@@ -13,7 +13,7 @@
  *    5 | 3 5 7 11 23 => 3 5 7
  *    Gợi ý: Tìm số lớn t2 trong mảng rồi duyệt mảng
  * g, Kiểm tra xem mảng có đối xứng không? Nếu có in "YES", nếu không in "NO"
- *
+ * h, Liệt kê các phần tử mà có ít nhất 1 phần tử bên cạnh trái dấu.
  */
 
 #include <iostream>
@@ -33,12 +33,24 @@ int checkE(int n)
   while (n)
   {
     int a = n % 10;
-    if (a % 2 == 0)
+    if (a % 2 != 0)
       return 0;
-    n / 10;
+    n /= 10;
   }
   return 1;
 }
+int checkG(int a[], int n)
+{
+  int l = 0, r = n - 1;
+  while (l < r)
+  {
+    if (a[l] != a[r])
+      return 0;
+    ++l, --r;
+  }
+  return 1;
+}
+
 void a(int a[], int n)
 {
   int max = -1e9 - 1, min = 1e9 + 1;
@@ -52,7 +64,6 @@ void a(int a[], int n)
   cout << "a, So lon nhat: " << max << endl;
   cout << "   So nho nhat: " << min << endl;
 }
-
 void b(int a[], int n)
 {
   int idx = 0, min = 1e9 + 1;
@@ -67,7 +78,6 @@ void b(int a[], int n)
   cout << "b, Index: " << idx << endl;
   cout << "   Min: " << min << endl;
 }
-
 void c(int a[], int n)
 {
   int max1 = -1e9 - 1, max2 = -1e9 - 1;
@@ -85,7 +95,6 @@ void c(int a[], int n)
   cout << "c, So lon nhat: " << max1 << endl;
   cout << "   So lon thu 2: " << max2 << endl;
 }
-
 void d(int a[], int n)
 {
   int max1 = -1e9 - 1, max2 = -1e9 - 1;
@@ -102,7 +111,6 @@ void d(int a[], int n)
   cout << "d, So lon nhat: " << max1 << endl;
   cout << "   So lon thu 2: " << max2 << endl;
 }
-
 void e(int a[], int n)
 {
   int dem = 0, b[1000];
@@ -114,11 +122,38 @@ void e(int a[], int n)
       ++dem;
     }
   }
-  cout << dem << endl;
+  cout << "\n"
+       << dem << endl;
   for (int i = 0; i < dem; i++)
   {
-    cout << b[i] << " " << endl;
+    cout << b[i] << " ";
   }
+}
+void f(int a[], int n)
+{
+  int max1 = -1e9 - 1, max2 = -1e9 - 1;
+  for (int i = 0; i < n; i++)
+  {
+    if (a[i] > max1)
+    {
+      max2 = max1;
+      max1 = a[i];
+    }
+    else if (a[i] > max2 && a[i] != max1)
+      max2 = a[i];
+  }
+  for (int i = 0; i < n; i++)
+  {
+    if (a[i] < max2)
+      cout << a[i] << " ";
+  }
+}
+void g(int a[], int n)
+{
+  if (checkG(a, n))
+    cout << "YES" << endl;
+  else
+    cout << "NO" << endl;
 }
 
 int main()
@@ -130,8 +165,9 @@ int main()
   // b(arr, n);
   // c(arr, n);
   // d(arr, n);
-  e(arr, n);
+  // e(arr, n);
   // f(arr, n);
-  // g(arr, n);
+  g(arr, n);
+  // h(arr, n);
   return 0;
 }
