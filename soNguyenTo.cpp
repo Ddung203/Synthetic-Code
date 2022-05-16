@@ -4,7 +4,7 @@ using namespace std;
 
 int checkSNT(int n)
 {
-  for (int i = 2; i < sqrt(n); i++)
+  for (int i = 2; i <= sqrt(n); i++)
   {
     if (n % i == 0)
       return 0;
@@ -14,7 +14,7 @@ int checkSNT(int n)
 
 int main()
 {
-  cout << checkSNT(13);
+  cout << checkSNT(16);
   return 0;
 }
 
