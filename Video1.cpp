@@ -161,13 +161,13 @@ int main()
   int arr[1000], n;
   nhap(arr, n);
 
-  // a(arr, n);
+  a(arr, n);
   // b(arr, n);
   // c(arr, n);
   // d(arr, n);
   // e(arr, n);
   // f(arr, n);
-  g(arr, n);
+  // g(arr, n);
   // h(arr, n);
   return 0;
 }
